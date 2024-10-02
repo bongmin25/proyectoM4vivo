@@ -7,7 +7,10 @@ import Oreder from "../Order/Oreder";
 import ModalMessage from "../Modal/ModalMessage";
 
 const CartLogin = () => {
-  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const cart =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("cart") || "[]")
+      : [];
   const { user } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -66,10 +69,12 @@ const CartLogin = () => {
                   <h1 className="text-xl font-bold">
                     Your bag is empty, ready for start?
                   </h1>
-                  <p className="mt-3">Once you add something it will appear here</p>
+                  <p className="mt-3">
+                    Once you add something it will appear here
+                  </p>
                   <Link href="/products">
                     <button className="bg-[#dfdddd80] text-[#000000] mt-3 rounded py-2 px-4 hover:bg-[#48db5b] hover:text-white transition duration-300 ">
-                     Start here
+                      Start here
                     </button>
                   </Link>
                 </div>
